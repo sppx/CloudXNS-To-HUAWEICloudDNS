@@ -1,7 +1,7 @@
 #encoding=utf-8
-import csv,json,sys
-import pandas as pd
+import csv,json,sys,glob
 from capi import capi
+from pyexcel.cookbook import merge_all_to_a_book
 
 api_key=''
 secret_key=''
@@ -86,8 +86,6 @@ if __name__=="__main__":
 			
 			filewriter.writerow(['主机记录', '记录类型', '线路类型', 'TTL值','权重值','记录值'])
 			disable_file_writer.writerow(['主机记录', '记录类型', '线路类型', 'TTL值','权重值','记录值'])
-			csv = pd.read_csv(domain+'.csv', encoding='utf-8')
-			csv.to_excel(domain+'.csv', sheet_name='data')
 			for r in domain_record:
 				new_record=transform(r)
 				if(new_record==None):
@@ -104,3 +102,4 @@ if __name__=="__main__":
 				#print(new_record)
 				filewriter.writerow([new_record['host'], new_record['type'], new_record['line'],
 					new_record['ttl'], new_record['weight'], new_record['value']])
+	merge_all_to_a_book(glob.glob(domain+'.csv'), domain+'.xlsx')
