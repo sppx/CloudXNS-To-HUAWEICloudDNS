@@ -2,8 +2,8 @@
 import csv,json,sys
 from capi import capi
 
-api_key='8abd459c45c4a1299c59466a42d708eb'
-secret_key='84008f3d59c95a83'
+api_key=''
+secret_key=''
 
 api=capi(api_key,secret_key)
 
