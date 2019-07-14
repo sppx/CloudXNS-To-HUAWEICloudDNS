@@ -1,5 +1,5 @@
-# CloudXNS-To-JDCloudDNS
-# 导出CloudXNS记录为京东云DNS格式csv导出文件
+# CloudXNS-To-HUAWEICloudDNS
+# 导出CloudXNS记录为华为云DNS格式csv导出文件
 
 ## 注意事项
 * Python 3.x
@@ -12,10 +12,11 @@
 ## 食用方法
 1. 下载完整Git项目压缩包或者使用git clone命令下载
 2. 修改api_key、secret_key为你的CloudXNS的
-3. python start.py 域名
-4. 将导出的域名.csv文件在京东云DNS导入，选择京东云csv导出格式，选择京东云csv导出格式，选择京东云csv导出格式
-5. 右上角，批量导入
-6. 打完，收工
+3. 安装lrzsz 支持 和python 支持pyexcel
+4. python start.py 域名
+5. 接收xlsx文件
+6. 右上角，批量导入
+7. 打完，收工
 
 ## 鸣谢
 本脚本使用的CloudXNS Python SDK版本为：https://github.com/wevsty/CloudXNS_Python3_SDK ，官方版本只支持Python2。使用Python2的请自行安装官方Python SDK，然后修改代码导入。
