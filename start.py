@@ -1,5 +1,5 @@
 #encoding=utf-8
-import csv,json,sys,glob
+import csv,json,sys,glob,os
 from capi import capi
 from pyexcel.cookbook import merge_all_to_a_book
 
@@ -36,7 +36,7 @@ def transform(record):
 	new_record['line']='全网默认'
 	new_record['value']=record['value']
 	new_record['priority']='-'
-	new_record['weight']='-'
+	new_record['weight']='1'
 	new_record['status']=2 if record['status']=='ok' else 4
 	new_record['ttl']=record['ttl']
 	new_record['last_update']=record['update_time']
@@ -98,8 +98,17 @@ if __name__=="__main__":
 					disable_file_writer.writerow([new_record['host'], new_record['type'], new_record['line'],
 					new_record['ttl'], new_record['weight'], new_record['value']])
 					continue
-					
 				#print(new_record)
+				if(new_record['type']=='MX'):
+					filewriter.writerow([new_record['host'], new_record['type'], new_record['line'],
+					new_record['ttl'], new_record['weight'], "10 "+ new_record['value']])
+					continue
+				if(new_record['type']=='TXT'):
+					filewriter.writerow([new_record['host'], new_record['type'], new_record['line'],
+					new_record['ttl'], new_record['weight'], '""'+new_record['value']+'""'])
+					continue
 				filewriter.writerow([new_record['host'], new_record['type'], new_record['line'],
 					new_record['ttl'], new_record['weight'], new_record['value']])
+
 	merge_all_to_a_book(glob.glob(domain+'.csv'), domain+'.xlsx')
+	os.system('sz '+domain+'.xlsx && rm -rf '+domain+'.xlsx *.csv')
