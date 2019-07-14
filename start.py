@@ -32,6 +32,7 @@ def transform(record):
 		
 	new_record={}
 	new_record['host']=record['host']
+	
 	new_record['line']='全网默认'
 	new_record['value']=record['value']
 	new_record['priority']='-'
@@ -97,11 +98,9 @@ if __name__=="__main__":
 				# If the record is disabled before.
 				if(new_record['status']==4):
 					disable_file_writer.writerow([new_record['host'], new_record['type'], new_record['line'],
-					new_record['value'], new_record['priority'], new_record['weight'],
-					new_record['ttl'], new_record['status'], new_record['last_update']])
+					new_record['ttl'], new_record['weight'], new_record['value']])
 					continue
 					
 				#print(new_record)
 				filewriter.writerow([new_record['host'], new_record['type'], new_record['line'],
-					new_record['value'], new_record['priority'], new_record['weight'],
-					new_record['ttl'], new_record['status'], new_record['last_update']])
+					new_record['ttl'], new_record['weight'], new_record['value']])
