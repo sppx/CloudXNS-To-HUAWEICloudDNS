@@ -58,7 +58,7 @@ def transform(record):
 	return new_record
 	
 def detect(record_type):
-	record_type_list=['A','AX','AAAA','CNAME','CNAMEX','MX','LINK','DR301X','DR302X','TXT','NS']
+	record_type_list=['A','AX','AAAA','CNAME','CNAMEX','MX','LINK','DR301X','DR302X','TXT','NS','SRV']
 	if(record_type not in record_type_list):
 		return -1
 	if(record_type in ['A','AX','AAAA','CNAME','CNAMEX']):
